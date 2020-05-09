@@ -13,16 +13,10 @@ public class Laugh {
     static Boolean no_laughs;
     Clip clip;
 
-    public Laugh() 
-        throws UnsupportedAudioFileException,IOException,
-        LineUnavailableException{
+    public Laugh(){
         no_laughs = true;
         laugh_path = RandomLaugh();
-        AudioInputStream audioInputStream = 
-        AudioSystem.getAudioInputStream(new File("resources/laughs/"+laugh_path));
-        
-        clip = AudioSystem.getClip();
-        clip.open(audioInputStream);
+
     }
 
 
@@ -67,8 +61,20 @@ public class Laugh {
             return true;
         }
     }
-    public void PlayLaugh(){
-        clip.start();
+    public void PlayLaugh() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+        if(clip != null){
+            clip.stop();
 
+        }
+        AudioInputStream audioInputStream = 
+        AudioSystem.getAudioInputStream(new File("resources/laughs/"+laugh_path));
+        
+        clip = AudioSystem.getClip();
+        clip.open(audioInputStream);
+        clip.start();
+        this.resetLaugh();
+    }
+    private void resetLaugh(){
+        laugh_path = RandomLaugh();
     }
 }

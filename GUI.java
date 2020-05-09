@@ -11,6 +11,8 @@ import javax.swing.JPanel;
 
 public class GUI {
 
+    static Laugh clicked_laugh = new Laugh();
+
     public GUI() {
         JFrame frame = new JFrame();
         frame.setSize(350, 200);
@@ -35,21 +37,19 @@ public class GUI {
         laughbutton.setBounds(125, 80, 100, 25);
         laughbutton.addActionListener((ActionListener) new ActionListener() {
 
-            @Override
             public void actionPerformed(ActionEvent arg0) {
                 try {
-                    Laugh clicked_laugh = new Laugh();
                     clicked_laugh.PlayLaugh();
                 } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             }
-
         });
         panel.add(laughbutton);
 
-    }
+}
+
     public static void main(String[] args){
         new GUI();
         System.out.println("Hello, World.");
