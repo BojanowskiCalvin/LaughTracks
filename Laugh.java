@@ -19,9 +19,6 @@ public class Laugh {
 
     }
 
-
-
-
     private static String RandomLaugh() {
         try {
             no_laughs = true;
